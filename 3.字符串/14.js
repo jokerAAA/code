@@ -19,7 +19,7 @@ function main(strs) {
   }
   var prefix = strs[0];
   const length = strs.length;
-  for (let i = 1; i < strs.length; i++) {
+  for (let i = 1; i < length; i++) {
     prefix = getPrefix(prefix, strs[i])
     if (prefix === '') {
       break;
