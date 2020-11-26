@@ -18,45 +18,49 @@
  // 后序遍历：左右中
 
 // 前序遍历
-function preorderTraversal(root, arr = []) {
-  if (!root || !root.val) return [];
-  arr.push(root.val);
-  if (root.left && root.left.val) {
-    preorderTraversal(root.left, arr);
+function preorderTraversal(root) {
+  if (root == null) {
+    return [];
   }
-  if (root.right && root.right.val) {
-    preorderTraversal(root.right, arr);
+  var res = [];
+  var dfs = (root) => {
+    if (root == null) {
+      return;
+    }
+    res.push(root.val);
+    dfs(root.left)
+    dfs(root.right);
   }
-  return arr;
+  dfs(root);
+  return res;
 }
 
  // 中序遍历
-function main(root, arr) {
-  arr = arr || [];
-  if (!root || !root.val) {
-    return [];
+function main(root) {
+  var res = [];
+  var dfs = (root) => {
+    if (root == null) {
+      return;
+    }
+    dfs(root.left)
+    res.push(root.val)
+    dfs(root.right);
   }
-  if (root.left) {
-    main(root.left, arr);
-  }
-  arr.push(root.val)
-  if (root.right) {
-    main(root.right, arr);
-  }
-  return arr;
+  dfs(root);
+  return res;
 }
 
 // 后序遍历: 左右中
-function postorderTraversal(root, arr = []) {
-  if (!root || !root.val) {
-    return [];
+function postorderTraversal(root) {
+  var res = [];
+  var dfs = (root) => {
+    if (root == null) {
+      return;
+    }
+    dfs(root.left);
+    dfs(root.right);
+    res.push(root.val)
   }
-  if (root.left && root.left.val) {
-    postorderTraversal(root.left, arr);
-  }
-  if (root.right && root.right.val) {
-    postorderTraversal(root.right, arr);
-  }
-  arr.push(root.val);
-  return arr;
+  dfs(root);
+  return res;
 }
