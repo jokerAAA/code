@@ -64,3 +64,34 @@ function postorderTraversal(root) {
   dfs(root);
   return res;
 }
+
+// 先序遍历
+function preTraverse(root) {
+  var res = [];
+  var stack = [root];
+  while(stack.length) {
+    let node  = stack.pop();
+    if (node == null) {
+      continue;
+    }
+    res.push(node.val)
+    stack.push(node.right)
+    stack.push(node.left);
+  }
+  return res;
+}
+
+// 后续遍历
+function afterTraverse(root) {
+  var res = [];
+  var stack = [root];
+  while(stack.length) {
+    const node = stack.pop();
+    if (node == null) {
+      stack.push(node.right)
+      stack.push(node.left);
+      res.push(node.val)
+    }
+  }
+  return res;
+}
